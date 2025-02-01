@@ -11,7 +11,7 @@ def test_great_expectations(df: DataFrame) -> None:
 
     # setup input datasource
     spark_data_source = context.sources.add_spark("spark_data_source")
-    data_asset = spark_data_source.add_dataframe_asset("input_data_my_data_df")
+    data_asset = spark_data_source.add_dataframe_asset("spark_dataframe")
 
     my_batch_request = data_asset.build_batch_request(dataframe=df)
     print(df.columns)
@@ -34,28 +34,28 @@ def test_great_expectations(df: DataFrame) -> None:
 
 
     # define checkpoint 
-    my_checkopoint_name = "my_checkopoint"
+    my_checkpoint_name = "my_checkpoint"
 
     yaml_config = f"""
-    name: {my_checkopoint_name}
+    name: {my_checkpoint_name}
     config_version: 1.0
     class_name: SimpleCheckpoint
-    run_name_template: "my-run-name-template"
+    run_name_template: "check-spark-df_%Y-%m-%d"
     validations:
         - batch_request:
             datasource_name: spark_data_source
-            data_asset_name: input_data_my_data_df
+            data_asset_name: spark_dataframe
     expectation_suite_name: spark_expectation_suite
     """
 
-    my_checkopoint = context.test_yaml_config(yaml_config)
-    context.add_checkpoint(checkpoint=my_checkopoint)
+    my_checkpoint = context.test_yaml_config(yaml_config)
+    context.add_checkpoint(checkpoint=my_checkpoint)
 
-    checkpoint_run_results = context.run_checkpoint(my_checkopoint_name)
 
+    # run the checks
+    checkpoint_run_results = context.run_checkpoint(my_checkpoint_name)
     print(checkpoint_run_results)
 
-    print("so far so good")
 
     # export context with all settings for future runs (output is in 'gx' folder)
     context.convert_to_file_context()

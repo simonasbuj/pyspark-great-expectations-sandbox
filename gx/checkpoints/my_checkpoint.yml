@@ -1,9 +1,9 @@
-name: my_checkopoint
+name: my_checkpoint
 config_version: 1.0
 template_name:
 module_name: great_expectations.checkpoint
 class_name: SimpleCheckpoint
-run_name_template: my-run-name-template
+run_name_template: check-spark-df_%Y-%m-%d
 expectation_suite_name: spark_expectation_suite
 batch_request: {}
 action_list:
@@ -21,7 +21,7 @@ runtime_configuration: {}
 validations:
   - batch_request:
       datasource_name: spark_data_source
-      data_asset_name: input_data_my_data_df
+      data_asset_name: spark_dataframe
 profilers: []
 ge_cloud_id:
 expectation_suite_ge_cloud_id:
