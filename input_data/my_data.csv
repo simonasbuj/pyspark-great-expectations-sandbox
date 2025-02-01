@@ -1,0 +1,5 @@
+name,age,enum_column
+sim,28,cat
+der,,cat
+gan,11,dog
+hernandez,34,slime
