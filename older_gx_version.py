@@ -26,6 +26,7 @@ def test_great_expectations(df: DataFrame) -> None:
     # validator.expect_column_values_to_be_in_set("age", [24, 28, 21, 48])
     validator.expect_column_values_to_not_be_null("name")
     validator.expect_column_values_to_be_between("age", min_value=25, max_value=50)
+    validator.expect_column_values_to_not_be_null("age")
     validator.expect_column_values_to_be_in_set("enum_column", ["cat", "dog"])
 
     # save these expecations in Expectation Suite
@@ -55,6 +56,9 @@ def test_great_expectations(df: DataFrame) -> None:
     print(checkpoint_run_results)
 
     print("so far so good")
+
+    # export context with all settings for future runs (output is in 'gx' folder)
+    context.convert_to_file_context()
 
 
 def main() -> None:
