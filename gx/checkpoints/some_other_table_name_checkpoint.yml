@@ -1,10 +1,10 @@
-name: my_checkpoint
+name: some_other_table_name_checkpoint
 config_version: 1.0
 template_name:
 module_name: great_expectations.checkpoint
 class_name: SimpleCheckpoint
-run_name_template: check-spark-df_%Y-%m-%d
-expectation_suite_name: spark_expectation_suite
+run_name_template: check-some_other_table_name_%Y-%m-%d
+expectation_suite_name: some_other_table_name_suite
 batch_request: {}
 action_list:
   - name: store_validation_result
@@ -20,8 +20,8 @@ evaluation_parameters: {}
 runtime_configuration: {}
 validations:
   - batch_request:
-      datasource_name: spark_data_source
-      data_asset_name: spark_dataframe
+      datasource_name: some_other_table_name_spark_datasource
+      data_asset_name: some_other_table_name_spark_dataframe
 profilers: []
 ge_cloud_id:
 expectation_suite_ge_cloud_id:

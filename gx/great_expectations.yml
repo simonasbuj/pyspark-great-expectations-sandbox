@@ -41,7 +41,7 @@ data_docs_sites:
     site_index_builder:
       class_name: DefaultSiteIndexBuilder
 anonymous_usage_statistics:
-  data_context_id: 3beb03b0-c625-4135-8763-dd6f8f239363
+  data_context_id: 42b63139-334d-4f02-a1b8-196b2cc4875a
   enabled: true
 notebooks:
 include_rendered_content:
@@ -49,9 +49,15 @@ include_rendered_content:
   expectation_suite: false
   expectation_validation_result: false
 fluent_datasources:
-  spark_data_source:
+  my_table_name_spark_datasource:
     type: spark
     assets:
-      spark_dataframe:
+      my_table_name_spark_dataframe:
+        type: dataframe
+        batch_metadata: {}
+  some_other_table_name_spark_datasource:
+    type: spark
+    assets:
+      some_other_table_name_spark_dataframe:
         type: dataframe
         batch_metadata: {}
